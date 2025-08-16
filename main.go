@@ -31,6 +31,7 @@ func main() {
 	}
 	cmds.register("login", handlerLogin)
 	cmds.register("register", handlerRegister)
+	cmds.register("reset", handlerReset)
 
 	args := os.Args
 	if len(args) < 2 {
@@ -134,5 +135,13 @@ func handlerRegister(s *state, cmd command) error {
 	fmt.Printf("user has been created:\nid: %s\ncreated at: %s\nupdated at: %s\nname: %s\n",
 		userParams.ID.UUID, userParams.CreatedAt.Time, userParams.UpdatedAt.Time, userParams.Name)
 
+	return nil
+}
+
+func handlerReset(s *state, cmd command) error {
+	err := s.db.DeleteUsers(context.Background())
+	if err != nil {
+		return err
+	}
 	return nil
 }
