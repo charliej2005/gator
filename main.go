@@ -83,7 +83,16 @@ func handlerLogin(s *state, cmd command) error {
 		return errors.New("username not provided")
 	}
 	username := cmd.args[0]
-	err := s.config.SetUser(username)
+
+	_, err := s.db.GetUser(context.Background(), username)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return errors.New("no user with the given name")
+		}
+		return err
+	}
+
+	err = s.config.SetUser(username)
 	if err != nil {
 		return err
 	}
