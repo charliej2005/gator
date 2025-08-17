@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"errors"
 	"fmt"
 
 	"github.com/charliej2005/gator/internal/database"
@@ -17,7 +16,7 @@ func handlerFollowing(s *state, cmd command, user database.User) error {
 	}
 
 	if len(feedFollows) == 0 {
-		return errors.New("no followed feeds found")
+		fmt.Println("no followed feeds found")
 	}
 
 	for i := range feedFollows {
