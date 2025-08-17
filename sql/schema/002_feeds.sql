@@ -7,8 +7,10 @@ CREATE TABLE feeds(
     name TEXT
         NOT NULL,
     url TEXT
-        UNIQUE,
-    user_id UUID,
+        UNIQUE
+        NOT NULL,
+    user_id UUID
+        NOT NULL,
     CONSTRAINT fk_user_id
         FOREIGN KEY (user_id)
         REFERENCES users(id)
