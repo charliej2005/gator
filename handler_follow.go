@@ -11,7 +11,7 @@ import (
 	"github.com/google/uuid"
 )
 
-func handlerFollow(s *state, cmd command) error {
+func handlerFollow(s *state, cmd command, user database.User) error {
 	if len(cmd.args) == 0 {
 		return errors.New("missing url")
 	}
@@ -23,11 +23,6 @@ func handlerFollow(s *state, cmd command) error {
 		return err
 	}
 	feedID := feed.ID
-
-	user, err := s.db.GetUser(context.Background(), s.config.CurrentUserName)
-	if err != nil {
-		return err
-	}
 	userID := user.ID
 
 	params := database.CreateFeedFollowParams{
