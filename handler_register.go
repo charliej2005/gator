@@ -18,7 +18,7 @@ func handlerRegister(s *state, cmd command) error {
 	username := cmd.args[0]
 	nullTime := sql.NullTime{Time: time.Now(), Valid: true}
 	userParams := database.CreateUserParams{
-		ID:        uuid.NullUUID{UUID: uuid.New(), Valid: true},
+		ID:        uuid.New(),
 		CreatedAt: nullTime,
 		UpdatedAt: nullTime,
 		Name:      username,
@@ -43,7 +43,7 @@ func handlerRegister(s *state, cmd command) error {
 	}
 
 	fmt.Printf("user has been created:\nid: %s\ncreated at: %s\nupdated at: %s\nname: %s\n",
-		userParams.ID.UUID, userParams.CreatedAt.Time, userParams.UpdatedAt.Time, userParams.Name)
+		userParams.ID.String(), userParams.CreatedAt.Time, userParams.UpdatedAt.Time, userParams.Name)
 
 	return nil
 }
