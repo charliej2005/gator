@@ -67,6 +67,6 @@ This project is part of the [Boot.dev guided project series](https://www.boot.de
 
 ## Requirements
 
-- **Go** (version 1.20 or newer)
-- **PostgreSQL**
-- **Goose**
+- Go v1.22+
+- PostgreSQL
+- Goose
